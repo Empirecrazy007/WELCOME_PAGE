@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Page</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #4a00e0, #8e2de2);
+        overflow: hidden;
+        color: white;
+    }
+
+    .welcome-box {
+        text-align: center;
+        animation: fadeIn 2.5s ease;
+    }
+
+    .title {
+        font-size: 50px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ffffff; }
+        to { text-shadow: 0 0 25px #00eaff, 0 0 35px #ffffff; }
+    }
+
+    .btn {
+        margin-top: 25px;
+        padding: 12px 30px;
+        font-size: 20px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background: #00eaff;
+        color: black;
+        transition: 0.4s;
+        font-weight: bold;
+    }
+
+    .btn:hover {
+        background: #ffffff;
+        transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bubble {
+        position: absolute;
+        bottom: -50px;
+        background: rgba(255,255,255,0.4);
+        border-radius: 50%;
+        animation: rise 7s infinite ease-in;
+    }
+
+    @keyframes rise {
+        0% { transform: translateY(0) scale(0.5); opacity: 1; }
+        100% { transform: translateY(-900px) scale(1.5); opacity: 0; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="welcome-box">
+    <h1 class="title" id="text">Welcome !</h1>
+    <button class="btn" onclick="changeText()">Click Me ✨</button>
+</div>
+
+<script>
+function createBubbles() {
+    const bubble = document.createElement("span");
+    bubble.classList.add("bubble");
+    let size = Math.random() * 60;
+    bubble.style.width = 20 + size + "px";
+    bubble.style.height = 20 + size + "px";
+    bubble.style.left = Math.random() * innerWidth + "px";
+    document.body.appendChild(bubble);
+
+    setTimeout(() => {
+        bubble.remove();
+    }, 7000);
+}
+setInterval(createBubbles, 500);
+
+function changeText() {
+    document.getElementById("text").innerHTML = "Let's Get Started 🚀";
+}
+</script>
+
+</body>
+</html>
